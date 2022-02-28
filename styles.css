@@ -1,0 +1,73 @@
+body {
+    margin: 20px 0;
+    background: #CECECE;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    font-family: 'Fredoka One', cursive;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 50px;
+}
+h1 {
+    font-size: 2.5rem;
+    padding: 5px;
+    color: #9f729f;
+}
+.botoes-restart-newgame {
+    padding: 5px;
+}
+.restart, .newgame {
+    padding: 10px;
+    background: #f3b0c3;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    margin: 0px 5px;
+    font-family: 'Fredoka One', cursive;
+    color: #424242;
+}
+.jogo-memoria {
+    display: grid;
+    grid-template-columns: repeat(6, 100px);
+    grid-template-rows: repeat(6, 100px);
+    gap: 10px;
+    align-self: center;
+}
+.botao {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    background-color: #cbaacb;
+    border-radius: 100px;
+    transition: 2s;
+    box-shadow: 2px 2px 1px #9f729f;
+}
+.botao:hover {
+    transform: rotateY(180deg);
+}
+.imagem {
+    width: 60px;
+    padding: 20px;
+
+}
+.players {
+    align-self: center;
+}
+.player {
+    background-color: #ffeb99;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    padding: 20px;
+    margin: 0px 10px;
+    box-shadow: 2px 2px 2px #ffde55;
+    font-family: 'Fredoka One', cursive;
+    color: #424242;
+}
+.player:hover {
+    background-color: #ffde55;
+}
