@@ -9,10 +9,19 @@ let arr = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,
 const listaNumeroDeJogadores = document.querySelectorAll('.jogadores');
 let numeroDeJogadores = ""
 let contadorMultiplayer = 0
-let pontosPlayer1 = 0
-let pontosPlayer2 = 0
-let pontosPlayer3 = 0
-let pontosPlayer4 = 0
+let listaPontoDosJogadores = [0,0,0,0]
+let iniciarJogo = false
+
+
+for(let i = arr.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i+1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+}
+
+for(let i=0; i < imagens.length; i++){
+    imagens[i].src = "./imagens/(" + arr[i] + ").png"
+    imagens[i].accessKey = arr[i]
+}
 
 
 function jogadorAtivo (contadorMultiplayer) {
@@ -34,7 +43,14 @@ for(let i=0; i < listaNumeroDeJogadores.length; i++){
     listaNumeroDeJogadores[i].onclick = function () {
         numeroDeJogadores = i + 1;
         document.querySelector('.inicio-do-jogo').classList.add('inativo');
-        console.log(numeroDeJogadores);
+        for(let j=0; j < 4 ; j++){
+            console.log(numeroDeJogadores)
+            if(j > (numeroDeJogadores - 1)){
+                document.querySelectorAll('.player')[j].classList.add('inativo')
+                console.log('teste')
+            }
+        }
+        iniciarJogo = true
     }
     
 }
@@ -43,7 +59,7 @@ for(let i=0; i < listaNumeroDeJogadores.length; i++){
 
 for(let i=0; i<botoesPrincipais.length; i++){
     botoesPrincipais[i].onclick = function () {
-        if(imagens[i].classList.contains('oculto') && !imagens[i].classList.contains('imagem-ativa')){
+        if(iniciarJogo &&imagens[i].classList.contains('oculto') && !imagens[i].classList.contains('imagem-ativa')){
             if(contadorChange == 1){
                 botoesPrincipais[i].classList.add('vira');
                 imagens[i].classList.remove('oculto');
@@ -63,6 +79,13 @@ for(let i=0; i<botoesPrincipais.length; i++){
                     imagens[imagemAnterior].classList.add('imagem-ativa');
                     botoesPrincipais[imagemAnterior].classList.add('botao-ativo');
 
+                    for(let k=0; k < 4; k++){
+                        if(document.querySelectorAll('.player')[k].classList.contains('player-ativo')){
+                            listaPontoDosJogadores[k] = listaPontoDosJogadores[k] + 1;
+                            document.querySelectorAll('.player')[k].innerHTML = "<h2>P1</h2><p>" + listaPontoDosJogadores[k] + "</p>"
+                        }
+                    } 
+
                 } else {
                     console.log(contadorMultiplayer)
                     contadorMultiplayer = (contadorMultiplayer + 1) % numeroDeJogadores;
@@ -77,10 +100,17 @@ for(let i=0; i<botoesPrincipais.length; i++){
                 contadorChange = contadorChange + 1
 
                 if (parseInt(imagens[i].accessKey, 10) === imagemAberta){
-                     imagens[i].classList.add('imagem-ativa');
-                     botoesPrincipais[i].classList.add('botao-ativo');
-                     imagens[imagemAnterior].classList.add('imagem-ativa');
-                     botoesPrincipais[imagemAnterior].classList.add('botao-ativo');
+                    imagens[i].classList.add('imagem-ativa');
+                    botoesPrincipais[i].classList.add('botao-ativo');
+                    imagens[imagemAnterior].classList.add('imagem-ativa');
+                    botoesPrincipais[imagemAnterior].classList.add('botao-ativo');
+
+                    for(let k=0; k < 4; k++){
+                        if(document.querySelectorAll('.player')[k].classList.contains('player-ativo')){
+                            listaPontoDosJogadores[k] = listaPontoDosJogadores[k] + 1;
+                            document.querySelectorAll('.player')[k].innerHTML = "<h2>P1</h2><p>" + listaPontoDosJogadores[k] + "</p>"
+                        }
+                    }
 
                 } else {
                     contadorMultiplayer = (contadorMultiplayer + 1) % numeroDeJogadores;
@@ -119,10 +149,23 @@ restart.onclick = function () {
             botoesPrincipais[i].classList.remove('botao-ativo');
         }
     }
+    listaPontoDosJogadores = [0,0,0,0];
+    document.querySelectorAll('.player')[0].innerHTML = "<h2>P1</h2><p>0</p></button>"
+    document.querySelectorAll('.player')[1].innerHTML = "<h2>P2</h2><p>0</p></button>"
+    document.querySelectorAll('.player')[2].innerHTML = "<h2>P3</h2><p>0</p></button>"
+    document.querySelectorAll('.player')[3].innerHTML = "<h2>P4</h2><p>0</p></button>"
 }
 
 
 newgame.onclick = function embaralhar () {
+    listaPontoDosJogadores = [0,0,0,0];
+    document.querySelectorAll('.player')[0].innerHTML = "<h2>P1</h2><p>0</p></button>"
+    document.querySelectorAll('.player')[1].innerHTML = "<h2>P2</h2><p>0</p></button>"
+    document.querySelectorAll('.player')[2].innerHTML = "<h2>P3</h2><p>0</p></button>"
+    document.querySelectorAll('.player')[3].innerHTML = "<h2>P4</h2><p>0</p></button>"
+    iniciarJogo = false
+
+
     for(let i=0; i < botoesPrincipais.length; i++){
         if(!imagens[i].classList.contains('oculto')){
             imagens[i].classList.add('oculto');
@@ -145,5 +188,7 @@ newgame.onclick = function embaralhar () {
         imagens[i].src = "./imagens/(" + arr[i] + ").png"
         imagens[i].accessKey = arr[i]
         }
+
+        document.querySelector('.inicio-do-jogo').classList.remove('inativo');
     }, 1300);
 }
