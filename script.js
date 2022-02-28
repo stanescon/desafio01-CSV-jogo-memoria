@@ -99,7 +99,7 @@ newgame.onclick = function embaralhar () {
         }
     
         for(let i=0; i < imagens.length; i++){
-        imagens[i].src = "file:///C:/Users/natal/Desktop/Desafios/desafios%20mentoria/01/desafio01-CSV-jogo-memoria/imagens/(" + arr[i] + ").png"
+        imagens[i].src = "./imagens/(" + arr[i] + ").png"
         imagens[i].accessKey = arr[i]
         }
     }, 1300);
