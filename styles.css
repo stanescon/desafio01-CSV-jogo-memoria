@@ -6,6 +6,41 @@ body {
     gap: 25px;
     font-family: 'Fredoka One', cursive;
 }
+.inicio-do-jogo {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #ffeb99;
+    width: 350px;
+    height: 200px;
+    left: calc((100vw - 350px) / 2);
+    top: 350px;
+    box-shadow: 3px 3px 2px #424242;
+    border-radius: 15px;
+    z-index: 5;
+}
+h2 {
+    font-size: 2rem;
+    text-align: center;
+    color: #424242;
+}
+.numero-de-jogadores {
+    margin: 40px 0;
+}
+.jogadores {
+    padding: 5px;
+    font-size: 2.5rem;
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    border-radius: 60px;
+    border: none;
+    background: #f57398;
+    color: #FFFFFF;
+    font-family: 'Fredoka One', cursive;
+}
 header {
     display: flex;
     justify-content: space-between;
@@ -83,4 +118,7 @@ h1 {
 }
 .botao-ativo {
     background-color: #9f729f;
+}
+.inativo {
+    display: none;
 }
