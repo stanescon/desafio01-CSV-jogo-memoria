@@ -15,7 +15,7 @@ body {
     background-color: #ffeb99;
     width: 350px;
     height: 200px;
-    left: calc((100vw - 350px) / 2);
+    left: calc((100vw - 390px) / 2);
     top: 350px;
     box-shadow: 3px 3px 2px #424242;
     border-radius: 15px;
@@ -138,6 +138,53 @@ h1 {
     box-shadow: 3px 3px 2px #424242;
     border-radius: 15px;
 }
+
+
+@media screen and (max-width: 800px){
+    body {
+        gap: 0px;
+    }
+    .jogo-memoria {
+        transform: scale(0.9);
+        grid-template-columns: repeat(4, 100px);
+        grid-template-rows: repeat(9, 100px);
+        gap: 5px;
+        padding: 10px;
+    }
+    .botoes-restart-newgame {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    }
+    .inicio-do-jogo {
+        transform: scale(0.8);
+        left: calc((100vw - 380px) / 2);
+        top: 400px;
+    }
+    .players {
+        transform: scale(0.7);
+        display: flex;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    .vira {
+        transform: scale(0.9);
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .jogo-memoria {
+        transform: scale(0.8);
+    }
+    .inicio-do-jogo {
+        left: calc((100vw - 390px) / 2);
+    }
+}
+
+
+
+
 .oculto {
     opacity: 0;
 }

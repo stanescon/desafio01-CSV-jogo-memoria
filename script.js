@@ -193,6 +193,13 @@ restart.onclick = function () {
             botoesPrincipais[i].classList.remove('botao-ativo');
         }
     }
+
+    for(let i=0; i < document.querySelectorAll('.player').length; i++){
+        if(document.querySelectorAll('.player')[i].classList.contains('player-ativo')){
+            document.querySelectorAll('.player')[i].classList.remove('player-ativo');
+        }
+    }
+
     listaPontoDosJogadores = [0,0,0,0];
     document.querySelectorAll('.player')[0].innerHTML = "<h2>P1</h2><p>0</p></button>"
     document.querySelectorAll('.player')[1].innerHTML = "<h2>P2</h2><p>0</p></button>"
@@ -223,7 +230,12 @@ newgame.onclick = function embaralhar () {
     if(!document.querySelector('.empate').classList.contains('inativo')){
         document.querySelector('.empate').classList.add('inativo')
     }
-
+    for(let i=0; i < document.querySelectorAll('.player').length; i++){
+        if(document.querySelectorAll('.player')[i].classList.contains('player-ativo')){
+            document.querySelectorAll('.player')[i].classList.remove('player-ativo');
+            console.log('teste');
+        }
+    }
 
     for(let i=0; i < botoesPrincipais.length; i++){
         if(!imagens[i].classList.contains('oculto')){
