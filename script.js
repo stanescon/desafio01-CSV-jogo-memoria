@@ -199,6 +199,7 @@ restart.onclick = function () {
             document.querySelectorAll('.player')[i].classList.remove('player-ativo');
         }
     }
+    document.querySelectorAll('.player')[0].classList.add('player-ativo');
 
     listaPontoDosJogadores = [0,0,0,0];
     document.querySelectorAll('.player')[0].innerHTML = "<h2>P1</h2><p>0</p></button>"
@@ -233,9 +234,9 @@ newgame.onclick = function embaralhar () {
     for(let i=0; i < document.querySelectorAll('.player').length; i++){
         if(document.querySelectorAll('.player')[i].classList.contains('player-ativo')){
             document.querySelectorAll('.player')[i].classList.remove('player-ativo');
-            console.log('teste');
         }
     }
+    document.querySelectorAll('.player')[0].classList.add('player-ativo');
 
     for(let i=0; i < botoesPrincipais.length; i++){
         if(!imagens[i].classList.contains('oculto')){
