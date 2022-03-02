@@ -200,6 +200,8 @@ restart.onclick = function () {
         }
     }
     document.querySelectorAll('.player')[0].classList.add('player-ativo');
+    contadorMultiplayer = 0
+
 
     listaPontoDosJogadores = [0,0,0,0];
     document.querySelectorAll('.player')[0].innerHTML = "<h2>P1</h2><p>0</p></button>"
@@ -237,6 +239,7 @@ newgame.onclick = function embaralhar () {
         }
     }
     document.querySelectorAll('.player')[0].classList.add('player-ativo');
+    contadorMultiplayer = 0
 
     for(let i=0; i < botoesPrincipais.length; i++){
         if(!imagens[i].classList.contains('oculto')){
