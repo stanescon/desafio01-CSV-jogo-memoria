@@ -12,6 +12,7 @@ let contadorMultiplayer = 0
 let listaPontoDosJogadores = [0,0,0,0]
 let iniciarJogo = false
 let contadorTentativas = 0
+let finalDoJogo = 0
 
 
 for(let i = arr.length - 1; i > 0; i--){
@@ -41,6 +42,7 @@ function jogadorAtivo (contadorMultiplayer) {
 
 function vencedor (listaPontoDosJogadores){
     let maiorPontuacao = 0;
+    let empate = false
     for(let i=0; i < listaPontoDosJogadores.length; i++){
         if(listaPontoDosJogadores[i] > maiorPontuacao){
             maiorPontuacao = listaPontoDosJogadores[i]
@@ -49,6 +51,21 @@ function vencedor (listaPontoDosJogadores){
     }
     let vencedor = listaPontoDosJogadores.findIndex(v => v == maiorPontuacao)
     console.log(vencedor)
+    
+    listaPontoDosJogadores.splice(vencedor, 1)
+    
+    for(let j=0; j < listaPontoDosJogadores.length; j++){
+        if(listaPontoDosJogadores[j] == maiorPontuacao){
+            empate = true
+        } 
+    }
+    
+    if(empate){
+        document.querySelector('.empate').classList.remove('inativo');
+    } else {
+        document.querySelector('.vitoria').innerHTML = "PLAYER " + (vencedor + 1) + " GANHOU";
+        document.querySelector('.vitoria').classList.remove('inativo');
+    }
 }
 
 
@@ -104,6 +121,7 @@ for(let i=0; i<botoesPrincipais.length; i++){
                             document.querySelectorAll('.player')[k].innerHTML = "<h2>P" + (k + 1) + "</h2><p>" + listaPontoDosJogadores[k] + "</p>"
                         }
                     } 
+                    finalDoJogo = finalDoJogo + 1
 
                 } else {
                     contadorMultiplayer = (contadorMultiplayer + 1) % numeroDeJogadores;
@@ -130,13 +148,18 @@ for(let i=0; i<botoesPrincipais.length; i++){
                             document.querySelectorAll('.player')[k].innerHTML = "<h2>P" + (k + 1) + "</h2><p>" + listaPontoDosJogadores[k] + "</p>"
                         }
                     }
-
+                    finalDoJogo = finalDoJogo + 1
+                    console.log(finalDoJogo)
+                    if (finalDoJogo == 18){
+                        vencedor(listaPontoDosJogadores)
+                    }
                 } else {
                     contadorMultiplayer = (contadorMultiplayer + 1) % numeroDeJogadores;
                     jogadorAtivo(contadorMultiplayer);
                     contadorTentativas = contadorTentativas + 1;
                     document.querySelector('.tentativas').innerHTML = "Tentativas: " + contadorTentativas
                 }
+            
                 
             } else if (contadorChange > 2 && contadorChange % 2 == 1){
                 for(let j=0; j < botoesPrincipais.length; j++){
@@ -175,6 +198,14 @@ restart.onclick = function () {
     document.querySelectorAll('.player')[1].innerHTML = "<h2>P2</h2><p>0</p></button>"
     document.querySelectorAll('.player')[2].innerHTML = "<h2>P3</h2><p>0</p></button>"
     document.querySelectorAll('.player')[3].innerHTML = "<h2>P4</h2><p>0</p></button>"
+    finalDoJogo = 0
+    if(!document.querySelector('.vitoria').classList.contains('inativo')){
+        document.querySelector('.vitoria').classList.add('inativo')
+    }
+    if(!document.querySelector('.empate').classList.contains('inativo')){
+        document.querySelector('.empate').classList.add('inativo')
+    }
+
 }
 
 
@@ -185,6 +216,13 @@ newgame.onclick = function embaralhar () {
     document.querySelectorAll('.player')[2].innerHTML = "<h2>P3</h2><p>0</p></button>"
     document.querySelectorAll('.player')[3].innerHTML = "<h2>P4</h2><p>0</p></button>"
     iniciarJogo = false
+    finalDoJogo = 0
+    if(!document.querySelector('.vitoria').classList.contains('inativo')){
+        document.querySelector('.vitoria').classList.add('inativo')
+    }
+    if(!document.querySelector('.empate').classList.contains('inativo')){
+        document.querySelector('.empate').classList.add('inativo')
+    }
 
 
     for(let i=0; i < botoesPrincipais.length; i++){
